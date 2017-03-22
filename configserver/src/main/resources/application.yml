@@ -3,8 +3,15 @@ server:
 spring:
   profiles:
     active: native
+  application:
+    name: configserver
   cloud:
     config:
       server:
         native:
           search-locations: classpath:/repository
+eureka:
+  client:
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${EUREKA_SERVER:localhost}:8761/eureka/
