@@ -32,8 +32,9 @@
 
     <!-- Plugin Versions and Settings -->
     <querydsl.version>4.1.4</querydsl.version>
-    <docker.skip>true</docker.skip>
+    <docker.skip.build>true</docker.skip.build>
     <docker.assembly.basedir>/opt</docker.assembly.basedir>
+    <docker.healthcheck.port>8080</docker.healthcheck.port>
   </properties>
 
   <dependencyManagement>
@@ -90,6 +91,29 @@
   </dependencyManagement>
 
   <dependencies>
+    <!-- Spring Boot Actuator -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-hystrix</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+    </dependency>
+
     <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -318,4 +342,13 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>dockerize</id>
+      <properties>
+        <docker.skip.build>false</docker.skip.build>
+      </properties>
+    </profile>
+  </profiles>
 </project>

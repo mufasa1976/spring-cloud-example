@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   configserver:
     image: mufasa1976/spring-cloud-example-configserver
@@ -9,6 +9,13 @@ services:
     - "./configserver/config:/opt/config"
     ports:
     - "8888:8888"
+    environment:
+      EUREKA_SERVER_HOST: eureka
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
   eureka:
     image: mufasa1976/spring-cloud-example-eureka
     hostname: eureka
@@ -20,3 +27,12 @@ services:
     - "8761:8761"
     depends_on:
     - configserver
+    environment:
+      CONFIG_SERVER_URL: http://configserver:8888
+      EUREKA_SERVER_HOST: eureka
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    
