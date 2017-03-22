@@ -1,4 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.github.mufasa1976</groupId>
@@ -29,6 +32,7 @@
 
     <!-- Plugin Versions and Settings -->
     <querydsl.version>4.1.4</querydsl.version>
+    <docker.skip>true</docker.skip>
     <docker.assembly.basedir>/opt</docker.assembly.basedir>
   </properties>
 
@@ -259,6 +263,13 @@
               </image>
             </images>
           </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>build</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
 
         <!-- QueryDSL Apt-Processor Plugin -->
@@ -304,12 +315,6 @@
       <plugin>
         <groupId>pl.project13.maven</groupId>
         <artifactId>git-commit-id-plugin</artifactId>
-      </plugin>
-
-      <!-- Docker Plugin -->
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
