@@ -1,0 +1,22 @@
+version: '2'
+services:
+  configserver:
+    image: mufasa1976/spring-cloud-example-configserver
+    hostname: configserver
+    volumes:
+    - "/tmp:/tmp"
+    - "./configserver/configserver.conf:/opt/configserver.conf"
+    - "./configserver/config:/opt/config"
+    ports:
+    - "8888:8888"
+  eureka:
+    image: mufasa1976/spring-cloud-example-eureka
+    hostname: eureka
+    volumes:
+    - "/tmp:/tmp"
+    - "./eureka/eureka.conf:/opt/eureka.conf"
+    - "./eureka/config:/opt/config"
+    ports:
+    - "8761:8761"
+    depends_on:
+    - configserver
