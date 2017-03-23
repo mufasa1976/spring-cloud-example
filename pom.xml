@@ -10,6 +10,7 @@
     <module>configserver</module>
     <module>eureka</module>
     <module>turbine</module>
+    <module>service</module>
   </modules>
 
   <properties>
@@ -93,11 +94,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-hystrix</artifactId>
     </dependency>
 
     <dependency>

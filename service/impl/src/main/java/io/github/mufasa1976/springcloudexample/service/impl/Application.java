@@ -15,35 +15,28 @@
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 */
-package io.github.mufasa1976.springcloudexample.turbine;
+package io.github.mufasa1976.springcloudexample.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
-import org.springframework.cloud.netflix.turbine.EnableTurbine;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication
-@EnableTurbine
-@EnableFeignClients
-@EnableHystrixDashboard
-@RestController
-public class Application {
+import io.github.mufasa1976.springcloudexample.service.api.HintService;
 
-  @Autowired
-  private HintServiceClient hintService;
+@SpringBootApplication
+@EnableDiscoveryClient
+@RestController
+public class Application implements HintService {
 
   public static void main(String... args) {
     new SpringApplicationBuilder(Application.class)
         .run(args);
   }
 
-  @GetMapping("/hint")
+  @Override
   public String hint() {
-    return hintService.hint();
+    return "There is a Hint";
   }
 
 }
