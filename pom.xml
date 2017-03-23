@@ -265,6 +265,12 @@
                   <tags>
                     <tag>${project.version}</tag>
                   </tags>
+                  <healthCheck>
+                    <cmd>curl -f http://localhost:8081/health</cmd>
+                    <interval>30s</interval>
+                    <timeout>10s</timeout>
+                    <retries>5</retries>
+                  </healthCheck>
                   <runCmds>
                     <runCmd>chmod u+x ${docker.assembly.basedir}/${project.build.finalName}.${project.packaging}</runCmd>
                   </runCmds>
@@ -345,7 +351,7 @@
 
   <profiles>
     <profile>
-      <id>dockerize</id>
+      <id>withDocker</id>
       <properties>
         <docker.skip.build>false</docker.skip.build>
       </properties>
