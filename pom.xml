@@ -266,7 +266,7 @@
                     <tag>${project.version}</tag>
                   </tags>
                   <healthCheck>
-                    <cmd>curl -f http://localhost:8081/health</cmd>
+                    <cmd>curl -f http://localhost:8081/health || exit 1</cmd>
                     <interval>30s</interval>
                     <timeout>10s</timeout>
                     <retries>5</retries>
