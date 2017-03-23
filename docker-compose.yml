@@ -9,8 +9,6 @@ services:
     - "./configserver/config:/opt/config"
     ports:
     - "8888:8888"
-    environment:
-      EUREKA_SERVER_HOST: eureka
   eureka:
     image: mufasa1976/spring-cloud-example-eureka
     hostname: eureka
@@ -20,6 +18,7 @@ services:
     - "./eureka/config:/opt/config"
     ports:
     - "8761:8761"
+    - "8989:8989"
     depends_on:
     - configserver
     environment:

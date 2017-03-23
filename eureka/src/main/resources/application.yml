@@ -1,9 +1,17 @@
+server:
+  port: 8761
 eureka:
+  instance:
+    hostname: ${EUREKA_SERVER_HOST:localhost}
   client:
     register-with-eureka: false
     fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 ---
 spring:
   profiles: cloud
+  main:
+    banner-mode: "off"
 management:
   port: 8081

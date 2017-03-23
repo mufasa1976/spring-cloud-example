@@ -15,14 +15,16 @@
    along with this program; if not, write to the Free Software Foundation,
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 */
-package io.github.mufasa1976.springcloudexample.configserver;
+package io.github.mufasa1976.springcloudexample.turbine;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.cloud.config.server.EnableConfigServer;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.cloud.netflix.turbine.stream.EnableTurbineStream;
 
 @SpringBootApplication
-@EnableConfigServer
+@EnableTurbineStream
+@EnableHystrixDashboard
 public class Application {
 
   public static void main(String... args) {

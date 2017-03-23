@@ -1,0 +1,11 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOST:localhost}:8761/eureka/
+---
+spring:
+  profiles: cloud
+  main:
+    banner-mode: "off"
+management:
+  port: 8081

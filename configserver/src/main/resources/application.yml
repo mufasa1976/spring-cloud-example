@@ -5,6 +5,8 @@ management:
 spring:
   profiles:
     active: native
+  main:
+    banner-mode: "off"
   application:
     name: configserver
   cloud:
@@ -12,8 +14,3 @@ spring:
       server:
         native:
           search-locations: classpath:/repository
-eureka:
-  client:
-    fetch-registry: false
-    service-url:
-      defaultZone: http://${EUREKA_SERVER_HOST:localhost}:8761/eureka/
