@@ -21,7 +21,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 
 import io.github.mufasa1976.springcloudexample.service.api.HintService;
 
-@FeignClient("service-impl")
+@FeignClient(name = "service")
 public interface HintServiceClient extends HintService {
 
 }

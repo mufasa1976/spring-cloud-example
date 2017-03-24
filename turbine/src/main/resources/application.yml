@@ -1,15 +1,22 @@
+server:
+  port: 8080
 eureka:
   client:
     serviceUrl:
       defaultZone: http://${EUREKA_HOST:localhost}:8761/eureka/
 turbine:
-  aggregator:
-    cluster-config: default
-  app-config: service-impl
+  app-config: turbine
+  cluster-name-expression: "'default'"
 ---
 spring:
   profiles: cloud
   main:
     banner-mode: "off"
+turbine:
+  app-config: turbine
+  cluster-name-expression: "'default'"
 management:
   port: 8081
+eureka:
+  instance:
+    non-secure-port: ${server.port}

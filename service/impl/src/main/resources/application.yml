@@ -9,5 +9,10 @@ spring:
   profiles: cloud
   main:
     banner-mode: "off"
+server:
+  port: 8080
 management:
   port: 8081
+eureka:
+  instance:
+    non-secure-port: ${server.port}

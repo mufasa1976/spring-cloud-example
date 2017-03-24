@@ -2,26 +2,49 @@ version: '3'
 services:
   configserver:
     image: mufasa1976/spring-cloud-example-configserver
-    hostname: configserver
+    hostname: ${CONFIGSERVER_HOST}
     volumes:
     - "/tmp:/tmp"
-    - "./configserver/configserver.conf:/opt/configserver.conf"
-    - "./configserver/config:/opt/config"
     ports:
     - "8888:8888"
+    command: [--debug]
   eureka:
     image: mufasa1976/spring-cloud-example-eureka
-    hostname: eureka
+    hostname: ${EUREKA_HOST}
     volumes:
     - "/tmp:/tmp"
-    - "./eureka/eureka.conf:/opt/eureka.conf"
-    - "./eureka/config:/opt/config"
     ports:
     - "8761:8761"
-    - "8989:8989"
     depends_on:
     - configserver
     environment:
-      CONFIG_SERVER_URL: http://configserver:8888
-      EUREKA_SERVER_HOST: eureka
-    command: [--spring.profiles.active=cloud]
+    - CONFIGSERVER_URL
+    - EUREKA_HOST
+    command: [--spring.profiles.active=cloud, --debug]
+  service:
+    image: mufasa1976/spring-cloud-example-service-impl
+    hostname: service
+    volumes:
+    - "/tmp:/tmp"
+    depends_on:
+    - configserver
+    - eureka
+    environment:
+    - CONFIGSERVER_URL
+    - EUREKA_HOST
+    command: [--spring.profiles.active=cloud, --debug]
+  turbine:
+    image: mufasa1976/spring-cloud-example-turbine
+    hostname: turbine
+    volumes:
+    - "/tmp:/tmp"
+    ports:
+    - "8080:8080"
+    depends_on:
+    - configserver
+    - eureka
+    - service
+    environment:
+    - CONFIGSERVER_URL
+    - EUREKA_HOST
+    command: [--spring.profiles.active=cloud, --debug]
