@@ -20,3 +20,5 @@ management:
 eureka:
   instance:
     non-secure-port: ${server.port}
+    metadata-map:
+      management.port: ${management.port:8081}
