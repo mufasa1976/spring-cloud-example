@@ -11,12 +11,14 @@ The goal of this Project is to show the Combination of
 # Installation
 Run ``mvn -P withDocker clean install``. After a successful Build the following
 Docker Images have been created
+
 | Docker Image                                 | Description                         |
 | -------------------------------------------- | ----------------------------------- |
 | mufasa1976/spring-cloud-example-configserver | Configuration Server                |
 | mufasa1976/spring-cloud-example-eureka       | Eureka Service Discovery            |
 | mufasa1976/spring-cloud-example-service      | internal Service                    |
 | mufasa1976/spring-cloud-example-turbine      | User Endpoint and Hystrix Dashboard |
+
 After this you can start the whole Application by ``./docker-compose.sh``. \
 This little Shell-Scripts starts all neccessary Containers in the correct
 Order and waits until the Application is up and running.
