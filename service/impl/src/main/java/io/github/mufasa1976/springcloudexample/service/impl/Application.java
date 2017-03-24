@@ -36,7 +36,7 @@ public class Application implements HintService {
 
   @Override
   public String hint() {
-    return "There is a Hint";
+    return "There is a Hint\n";
   }
 
 }
