@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MAXRETRY=6
+MAXRETRY=10
 
 function waitFor() {
   WAITTIME=1
